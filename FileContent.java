@@ -38,11 +38,13 @@ public class FileContent implements IterableText {
             while (scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
-                String nospacesline = line.replaceAll("\\s+", "");
-                for (int i = 0; i < nospacesline.length(); i++) {
-                    char ch = nospacesline.charAt(i);
-                    String strCh = String.valueOf(ch);
-                    allChars.add(strCh);
+                if (!line.equalsIgnoreCase("")) {
+                    String nospacesline = line.replaceAll("\\s+", "");
+                    for (int i = 0; i < nospacesline.length(); i++) {
+                        char ch = nospacesline.charAt(i);
+                        String strCh = String.valueOf(ch);
+                        allChars.add(strCh);
+                    }
                 }
             }
             return allChars;
@@ -63,12 +65,14 @@ public class FileContent implements IterableText {
             while (scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
-                String[] wordsline = line.split("\\s+");
-                lineLenght = wordsline.length;
+                if (!line.equalsIgnoreCase("")) {
+                    String[] wordsline = line.split("\\s+");
+                    lineLenght = wordsline.length;
 
-                for (int i = 0; i < lineLenght; i++) {
-                    String word = wordsline[i];
-                    allWords.add(word);
+                    for (int i = 0; i < lineLenght; i++) {
+                        String word = wordsline[i];
+                        allWords.add(word);
+                    }
                 }
             }
             return allWords;
