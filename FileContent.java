@@ -28,57 +28,24 @@ public class FileContent implements IterableText {
         return this.filename;
     }
 
-    public ArrayList<String> getChars() {
+    public String loadFileToString() {
 
-        ArrayList<String> allChars = new ArrayList<>();
+        StringBuffer builder = new StringBuffer();
+        String finalString = null;
 
-        try {
-            Scanner scanner = new Scanner(new BufferedReader(new FileReader(this.filename)));
-
-            while (scanner.hasNextLine()) {
-
-                String line = scanner.nextLine();
-                if (!line.equalsIgnoreCase("")) {
-                    String nospacesline = line.replaceAll("\\s+", "");
-                    for (int i = 0; i < nospacesline.length(); i++) {
-                        char ch = nospacesline.charAt(i);
-                        String strCh = String.valueOf(ch);
-                        allChars.add(strCh);
-                    }
-                }
-            }
-            return allChars;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public ArrayList<String> getWords() {
-
-        int lineLenght;
-        ArrayList<String> allWords = new ArrayList<String>();
-
-        try {
-            Scanner scanner = new Scanner(new BufferedReader(new FileReader(this.filename)));
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(this.filename)))){
 
             while (scanner.hasNextLine()) {
 
                 String line = scanner.nextLine();
-                if (!line.equalsIgnoreCase("")) {
-                    String[] wordsline = line.split("\\s+");
-                    lineLenght = wordsline.length;
-
-                    for (int i = 0; i < lineLenght; i++) {
-                        String word = wordsline[i];
-                        allWords.add(word);
-                    }
-                }
+                builder.append(line);
+                builder.append("\n");
             }
-            return allWords;
-        } catch (FileNotFoundException e) {
+            finalString = builder.toString();
+
+        }catch(FileNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+            return finalString;
     }
 }
