@@ -26,7 +26,7 @@ public class CharIterator implements Iterator {
    public String next() {
 
        if (hasNext()) {
-           this.chars.get(index++).toString();
+           return this.chars.get(index++).toString();
        }
            return null;
    }

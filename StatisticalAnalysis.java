@@ -6,7 +6,7 @@ public class StatisticalAnalysis {
     private Iterator<String> myIterator;
     private HashMap<String, Integer> map;
 
-    public StatisticalAnalysis(Iterator iterator) {
+    public StatisticalAnalysis(Iterator<String> iterator) {
 
         this.myIterator = iterator;
         this.map = new HashMap<String, Integer>();
@@ -40,7 +40,7 @@ public class StatisticalAnalysis {
         return size;
     }
  
-    public Set<String> occurMoreThen(Integer i) {
+    public Set<String> occurMoreThan(Integer i) {
  
         Set<String> setOfElements = new HashSet<String>();
  
@@ -56,7 +56,7 @@ public class StatisticalAnalysis {
 
         while (myIterator.hasNext()) {
 
-            String element = myIterator.next();
+            String element = myIterator.next().toLowerCase();
 
             if(this.map.containsKey(element)) {
                 this.map.put(element, this.map.get(element) + 1);
@@ -66,28 +66,12 @@ public class StatisticalAnalysis {
         }
     }
 
-    public Set<String> showOccuredMoreThan(int percent){
+    public ArrayList<String> getAllCharsForRatio() {
 
-        int number = (this.size()*percent)/100;
-        Set<String> occuredWords = this.occurMoreThen(number);
-        return occuredWords;
-	}
-
-    public float getAllVowels() {
-        int counter = 0;
-	    String[] allVowels = {"a", "e", "i", "o", "u", "y"};
-
-	    for (String key : this.map.keySet()) {
-            if(Arrays.asList(allVowels).contains(key)){
-                counter += this.map.get(key);
-            }
+        ArrayList<String> chars = new ArrayList<String>();
+        for (String key : this.map.keySet()) {
+            chars.add(key);
         }
-        float vovelPercent = ( counter * 100 ) / this.size();
-        return vovelPercent;
-        }
-
-    public int countOcurredWord(String word) {
-        int searchedWord = this.countOf(word);
-        return searchedWord;
+        return chars;
     }
 }

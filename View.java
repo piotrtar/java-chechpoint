@@ -31,11 +31,15 @@ public class View {
         System.out.println("Most used words (>1%): " + mySet);
     }
 
-    public static void printVowels(Number myNumber){
+    public static void printVowels(float myNumber){
         System.out.println("vowels %: " + myNumber);
     }
 
     public static void printRatio(float ratio){
         System.out.println("'a:e count ratio': " + ratio);
+    }
+
+    public static void printCharactersRatio(ArrayList<String> chars){
+        System.out.println(chars);
     }
 }
